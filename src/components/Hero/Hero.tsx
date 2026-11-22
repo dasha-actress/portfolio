@@ -46,7 +46,7 @@ export default function Hero() {
             >
                 <div className="hero-icon-body">
                     <img 
-                        src="/images/dragon.svg" 
+                        src={`${import.meta.env.BASE_URL}images/dragon.svg`}
                         alt="Дракон" 
                         style={{ 
                             width: '100%', 
