@@ -1,0 +1,107 @@
+/* ===== SEASON TOGGLE — Coral & warm pill panel ===== */
+.season-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-surface);
+    backdrop-filter: blur(20px) saturate(160%);
+    border: 1.5px solid rgba(255, 68, 68, 0.12);
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 4px 20px rgba(255, 68, 68, 0.1);
+    transition: all 0.3s ease;
+}
+
+.season-toggle:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 30px rgba(255, 68, 68, 0.2);
+}
+
+/* Particles on/off toggle */
+.season-particles-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 0, 128, 0.1));
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.season-particles-btn.on {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    box-shadow: 0 0 12px rgba(255, 68, 68, 0.4);
+}
+
+.season-particles-btn.off {
+    background: #FFF5EE;
+    border-color: var(--color-text-muted);
+}
+
+.season-particles-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Season buttons row */
+.season-selector {
+    display: flex;
+    gap: 4px;
+}
+
+.season-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    background: rgba(255, 240, 204, 0.5);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.season-btn:hover {
+    background: rgba(255, 68, 68, 0.1);
+    border-color: rgba(255, 68, 68, 0.3);
+    transform: scale(1.1);
+}
+
+.season-btn.active {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.15), rgba(255, 68, 68, 0.15));
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.2);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .season-toggle {
+        bottom: 12px; right: 12px;
+        padding: 8px;
+        border-radius: 14px;
+    }
+
+    .season-particles-btn {
+        width: 30px; height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .season-btn {
+        width: 26px; height: 26px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .season-toggle {
+        bottom: 8px; right: 8px;
+        padding: 6px; gap: 4px;
+    }
+}

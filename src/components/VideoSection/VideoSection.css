@@ -1,0 +1,459 @@
+/* ===== VIDEO SECTION — Modern Pink ===== */
+.video-section {
+    padding: var(--section-padding, 80px 0);
+    background: linear-gradient(180deg, #FFE4E1 0%, #FFF0F5 50%, #FFFFFF 100%);
+    overflow: hidden;
+}
+
+/* =========================================
+   КАРУСЕЛЬ (слайдер)
+   ========================================= */
+.video-carousel {
+    position: relative;
+    max-width: 900px; /* Широкий формат как на скрине */
+    margin: 0 auto;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(255, 45, 133, 0.15);
+    /* Чтобы уголки не обрезались */
+    padding: 10px; 
+}
+
+/* Уголки для рамки */
+.video-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+}
+.video-corner-tl { top: 0; left: 0; border-top: 3px solid var(--color-accent); border-left: 3px solid var(--color-accent); }
+.video-corner-tr { top: 0; right: 0; border-top: 3px solid var(--color-primary); border-right: 3px solid var(--color-primary); }
+.video-corner-bl { bottom: 0; left: 0; border-bottom: 3px solid var(--color-primary); border-left: 3px solid var(--color-primary); }
+.video-corner-br { bottom: 0; right: 0; border-bottom: 3px solid var(--color-accent); border-right: 3px solid var(--color-accent); }
+
+/* Кнопки навигации (стрелки) */
+.video-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 45, 133, 0.3);
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    padding-bottom: 4px;
+}
+.video-nav:hover {
+    background: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 20px rgba(255, 45, 133, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+.video-prev { left: -24px; padding-right: 3px; }
+.video-next { right: -24px; padding-left: 3px; }
+
+/* Контейнер слайдов */
+.video-slides {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Высота под 16:9 для широкого экрана */
+    border-radius: 20px;
+    overflow: hidden;
+    background: #1a1010;
+}
+
+.video-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: scale(1.02);
+    pointer-events: none;
+}
+
+.video-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* Кликабельная область */
+.video-play-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    padding: 36px 24px 32px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Фоновая картинка */
+.video-slide-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.video-play-area:hover .video-slide-preview {
+    opacity: 0.6;
+}
+
+/* Кнопка Play */
+.video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    box-shadow: 0 0 0 15px rgba(255, 45, 133, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-left: 6px;
+}
+
+.video-play-area:hover .video-play-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 0 25px rgba(255, 45, 133, 0.3);
+}
+
+/* Текст на картинке */
+.video-title {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 6px 0;
+    max-width: calc(100% - 40px);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+    text-align: left;
+}
+
+.video-hint {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Точки ===== */
+.video-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 16px 10px;
+}
+
+.video-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.video-dot.active {
+    background: var(--color-primary);
+    transform: scale(1.2);
+}
+
+/* ===== Прогресс-бар ===== */
+.video-progress-bar {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    height: 4px;
+    background: rgba(255, 45, 133, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.video-progress-segment {
+    flex: 1;
+    transition: background 0.4s ease;
+}
+
+.video-progress-segment.filled {
+    background: var(--color-primary);
+}
+
+/* ===== Текст-подсказка ===== */
+.video-hint-text {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 16px;
+}
+
+/* =========================================
+   МОДАЛЬНОЕ ОКНО (Лайтбокс)
+   ========================================= */
+.video-player-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(10, 5, 20, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+    animation: fadeIn 0.3s ease;
+}
+
+.video-player-content {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: default;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: scaleIn 0.3s ease;
+}
+
+.video-player-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 45, 133, 0.9);
+    color: #fff;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.video-player-close:hover {
+    background: rgba(255, 45, 133, 1);
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* Обертка iframe (16:9) */
+.video-player-iframe-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-player-iframe-wrap iframe,
+.video-player-iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.video-player-title {
+    padding: 16px 24px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #4a3a6b;
+    text-align: center;
+    border-top: 1px solid #f0e8ff;
+}
+
+.video-player-fallback {
+    padding: 16px 24px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff5f7, #f4e8ff);
+    border-top: 1px solid #f0e8ff;
+}
+
+.video-player-link {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 8px 24px rgba(255, 45, 133, 0.35);
+}
+
+.video-player-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(255, 45, 133, 0.5);
+}
+
+.video-player-note {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #8a7aaa;
+}
+
+/* Стрелки в модалке */
+.video-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 45, 133, 0.5);
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding-bottom: 5px;
+}
+
+.video-modal-nav:hover {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    transform: translateY(-50%) scale(1.12);
+}
+
+.video-modal-prev { left: 24px; padding-right: 3px; }
+.video-modal-next { right: 24px; padding-left: 3px; }
+
+.video-modal-counter {
+    padding: 10px 16px 14px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    border-top: 1px solid #f0e8ff;
+}
+
+.video-modal-hint {
+    color: #8a7aaa;
+    font-weight: 400;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* =========================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+   ========================================= */
+@media (max-width: 1000px) {
+    /* Отодвигаем стрелки внутрь экрана */
+    .video-prev { left: 10px; }
+    .video-next { right: 10px; }
+}
+
+@media (max-width: 768px) {
+    .video-carousel {
+        padding: 6px;
+        border-radius: 18px;
+    }
+    .video-corner { width: 24px; height: 24px; }
+    
+    .video-slides {
+        height: 350px;
+        border-radius: 14px;
+    }
+
+    .video-play-area {
+        padding: 24px 16px 24px;
+    }
+
+    .video-play-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .video-title {
+        font-size: 1.2rem;
+    }
+
+    .video-hint {
+        font-size: 0.85rem;
+    }
+
+    .video-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+    }
+    .video-prev { left: 6px; }
+    .video-next { right: 6px; }
+
+    .video-player-content { border-radius: 16px; }
+    .video-player-close { width: 36px; height: 36px; font-size: 1.4rem; }
+    .video-player-title { font-size: 1rem; padding: 14px 18px; }
+    
+    .video-modal-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 1.4rem;
+    }
+    .video-modal-prev { left: 8px; }
+    .video-modal-next { right: 8px; }
+}
+
+@media (max-width: 480px) {
+    .video-corner { display: none; }
+    .video-slides { height: 260px; }
+    .video-title { font-size: 1rem; max-width: 100%; }
+    .video-hint { display: none; /* Скрываем подсказку на узких экранах */ }
+    .video-play-icon { width: 50px; height: 50px; font-size: 1.2rem; }
+    
+    .video-modal-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+        padding-bottom: 3px;
+    }
+    .video-modal-prev { left: 4px; }
+    .video-modal-next { right: 4px; }
+}

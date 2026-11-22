@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===== RESET & BASE — Warm, bold, geometric ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* === Warm vibrant palette — coral & magenta on cream ===== */
+    --color-bg: #FFF9E6;          /* warm cream background      */
+    --color-bg-alt: #FFF0CC;       /* soft golden yellow         */
+    --color-surface: #FFFFFF;      /* pure white cards           */
+    --color-surface-light: #FFF5EE;
+
+    --color-primary: #FF4444;      /* bright coral red           */
+    --color-primary-dark: #CC2222;
+    --color-accent: #FF0080;       /* vibrant magenta-pink        */
+    --color-accent-alt: #00BFFF;   /* deep sky cyan              */
+    --color-text: #1A0A00;         /* warm dark brown-black      */
+    --color-text-muted: #6B5240;   /* warm brown gray            */
+
+    /* === New fonts — geometric sans-serif ===== */
+    --font-heading: 'Outfit', 'Arial Narrow', sans-serif;
+    --font-body: 'Poppins', 'Segoe UI', sans-serif;
+
+    /* === Spacing === */
+    --section-padding: 80px 24px;
+    --container-max: 1200px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --section-padding: 50px 12px;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 100px;
+    }
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Utility ===== */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    text-align: center;
+    margin-bottom: 48px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-primary), var(--color-accent-alt));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    margin: 16px auto 0;
+    border-radius: 2px;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gradient backgrounds used across sections */
+.gradient-bg {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
+}
+
+/* Text gradient utility */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

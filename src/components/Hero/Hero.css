@@ -1,0 +1,284 @@
+/* ============================================================
+   HERO — Modern Pink Design
+   ============================================================ */
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    background: var(--color-bg-gradient);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.hero-photo.loaded { opacity: 1; }
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.hero-gradient {
+    width: 100%;
+    height: 100%;
+    /* Градиент с розовым оттенком */
+    background: linear-gradient(
+        270deg,
+        rgba(255, 240, 245, 0.95) 0%,
+        rgba(255, 228, 225, 0.8) 35%,
+        transparent 65%
+    );
+}
+
+/* --- 3D Иконка (Маска) --- */
+.hero-icon-wrapper {
+    position: absolute;
+    top: 12%;
+    right: 5%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.hero-icon-body {
+    width: 220px;
+    height: 220px;
+    animation: floatIcon 4s ease-in-out infinite alternate;
+    filter: drop-shadow(0 10px 40px rgba(255, 45, 133, 0.4));
+}
+
+@keyframes floatIcon {
+    0%      { transform: translateY(0) rotate(-5deg); }
+    100%    { transform: translateY(-25px) rotate(5deg); }
+}
+
+.hero-icon-body svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Layout (ДЕСКТОП - СПРАВА ВНИЗУ) --- */
+.hero-layout {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Прижимаем вправо */
+    align-items: flex-end;     /* Прижимаем вниз */
+    padding: 0 8vw 120px 0;     
+}
+
+.hero-content {
+    max-width: 550px; 
+    text-align: left;
+    /* Убрали margin-top, чтобы блок не улетал вверх */
+}
+
+.hero-name {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem); 
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    white-space: nowrap; 
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+    color: var(--color-text-muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.hero-description {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 100%;
+}
+
+/* --- Buttons --- */
+.hero-cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.hero-cta-primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(255, 45, 133, 0.4);
+}
+
+.hero-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 45, 133, 0.6);
+}
+
+.hero-cta-secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.hero-cta-secondary:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 45, 133, 0.4);
+}
+
+/* --- Scroll hint --- */
+.hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: heroScrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes heroScrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+
+/* ============================================================
+   ПЛАНШЕТЫ И НОУТБУКИ (от 769px до 1100px)
+   ============================================================ */
+@media (max-width: 1100px) {
+    .hero-layout {
+        justify-content: center; /* Центрируем по горизонтали */
+        align-items: flex-end;   /* Прижимаем к низу */
+        padding: 0 24px 80px 24px;
+    }
+
+    .hero-content {
+        max-width: 700px;
+        text-align: center; /* Текст по центру */
+        
+        /* Добавляем мягкую подложку, чтобы текст не сливался с фото */
+        background: rgba(255, 249, 240, 0.85);
+        backdrop-filter: blur(10px);
+        padding: 32px;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-name { white-space: normal; }
+    .hero-cta-group { justify-content: center; }
+    .hero-icon-wrapper { top: 20%; right: 2%; }
+    .hero-icon-body { width: 160px; height: 160px; }
+}
+
+
+/* ============================================================
+   МОБИЛЬНАЯ ВЕРСИЯ (до 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+    .hero-gradient {
+        /* Делаем плотный темный низ, чтобы белый текст читался */
+        background: linear-gradient(
+            to top,
+            rgba(26, 15, 30, 0.95) 0%, 
+            rgba(26, 15, 30, 0.8) 40%,
+            transparent 80%
+        );
+    }
+
+    .hero-layout {
+        justify-content: center; 
+        align-items: flex-end;   
+        text-align: center;      
+        padding: 0 20px 50px 20px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 0;
+        background: none; 
+        backdrop-filter: none;
+        box-shadow: none;
+    }
+
+    .hero-name {
+        white-space: normal; 
+        font-size: 2.4rem;   
+        color: #fff;         
+        text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .hero-description {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-cta {
+        width: 100%;
+        max-width: 280px;
+        padding: 14px 20px;
+        font-size: 0.95rem;
+    }
+
+    .hero-icon-wrapper { display: none; }
+    .hero-scroll { display: none; }
+}

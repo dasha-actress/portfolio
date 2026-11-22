@@ -1,0 +1,79 @@
+/* =========================================
+   App root — modern pink theme
+   ========================================= */
+
+/* Подключаем современные шрифты (если они не подключены в index.html) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+
+:root {
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Новая яркая палитра */
+    --color-primary: #FF2D85;       /* Яркий неоновый розовый */
+    --color-accent: #B026FF;        /* Фиолетовый акцент */
+    --color-bg-light: #FFF0F5;      /* Очень светлый розовый фон */
+    --color-text: #2D1B2E;          /* Темно-сливовый для текста */
+    --color-text-muted: #6B4C6B;    /* Приглушенный сливовый */
+    --color-surface: #FFFFFF;
+
+    --section-padding: 100px 0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--color-bg-light);
+}
+
+.app {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--color-bg-light); /* Светлый розовый фон вместо кремового */
+}
+
+main {
+    padding-top: 60px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Navigation and scroll */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+section {
+    scroll-margin-top: 75px;
+    position: relative;
+}
+
+/* Стили для заголовков секций */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main {
+        padding-top: 50px;
+    }
+
+    section {
+        scroll-margin-top: 60px;
+    }
+}

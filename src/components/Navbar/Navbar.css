@@ -1,0 +1,241 @@
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    transition: all 0.35s ease;
+    padding: 12px 0;
+    background: rgba(255, 249, 230, 0.8);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px) saturate(160%);
+    box-shadow: 0 2px 30px rgba(255, 68, 68, 0.08);
+    padding: 8px 0;
+}
+
+.navbar.menu-open {
+    background: #FFF9E6; 
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: relative;
+}
+
+/* Logo */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    z-index: 1002; 
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* =========================================
+   КОНТЕЙНЕР С ДРАКОНОМ
+   ========================================= */
+.logo-dragon-wrapper {
+    width: 60px;  
+    height: 60px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 1. ДВИЖЕНИЕ ВВЕРХ-ВНИЗ */
+.logo-floating {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatUpDown 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px); /* Высота подъема */
+    }
+}
+
+/* 2. ВРАЩЕНИЕ 360 ТУДА И ОБРАТНО */
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(255, 68, 68, 0.4));
+    animation: fullSpin 3s ease-in-out infinite alternate;
+}
+
+@keyframes fullSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Наведение на логотип */
+.navbar-logo:hover .logo-img {
+    animation-play-state: paused;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover .logo-floating {
+    animation-play-state: paused;
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hamburger */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 1002; 
+    position: relative;
+}
+
+.bar {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggle.open .bar-1 { transform: rotate(45deg) translate(5px, 5px); }
+.navbar-toggle.open .bar-2 { opacity: 0; transform: scaleX(0); }
+.navbar-toggle.open .bar-3 { transform: rotate(-45deg) translate(6px, -6px); }
+
+/* Desktop menu */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+    margin: 0; padding: 0;
+}
+
+.navbar-menu a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-menu a:hover {
+    color: var(--color-primary);
+    background: rgba(255, 68, 68, 0.08);
+}
+
+/* =========================================
+   МОБИЛЬНАЯ ВЕРСИЯ 
+   ========================================= */
+@media (max-width: 900px) {
+    .navbar-toggle { display: flex; }
+
+    body.menu-is-open .app main {
+        margin-top: 380px;
+        transition: margin-top 0.4s ease;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: 0; 
+        left: 0;
+        width: 100%;
+        height: auto; 
+        background: linear-gradient(180deg, #FFF5EE 0%, #FFE8D0 100%);
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: flex-start;
+        padding-top: 80px; 
+        padding-bottom: 10px;
+        gap: 0; 
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(-100%); 
+        z-index: 1001; 
+        box-shadow: 0 10px 40px rgba(255, 68, 68, 0.15);
+    }
+
+    .navbar-menu.open { 
+        transform: translateY(0); 
+    }
+
+    .navbar-menu li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 68, 68, 0.15); 
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-menu.open li { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+
+    .navbar-menu.open li:nth-child(1) { transition-delay: 0.1s; }
+    .navbar-menu.open li:nth-child(2) { transition-delay: 0.15s; }
+    .navbar-menu.open li:nth-child(3) { transition-delay: 0.2s; }
+    .navbar-menu.open li:nth-child(4) { transition-delay: 0.25s; }
+    .navbar-menu.open li:nth-child(5) { transition-delay: 0.3s; }
+    .navbar-menu.open li:nth-child(6) { transition-delay: 0.35s; }
+    .navbar-menu.open li:nth-child(7) { transition-delay: 0.4s; }
+    .navbar-menu.open li:nth-child(8) { transition-delay: 0.45s; }
+
+    .navbar-menu a {
+        display: block;
+        padding: 14px 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-primary); 
+        letter-spacing: 1px;
+        border-radius: 0;
+        background: none;
+    }
+
+    .navbar-menu a:hover {
+        background: rgba(255, 68, 68, 0.05);
+        color: var(--color-accent);
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text { font-size: 0.95rem; }
+    
+    .logo-dragon-wrapper { 
+        width: 50px;  
+        height: 50px; 
+    }
+}
