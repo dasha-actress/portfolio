@@ -13,28 +13,31 @@ interface PhotoCarouselProps {
     autoplayDelay?: number
 }
 
+// Хелпер для формирования правильного пути с учетом базового URL (для GitHub Pages)
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
 const FOLDER_MAP: Record<string, string[]> = {
     scene: [
-        '/scene/00WzJlWaPeU.jpg', '/scene/9vZ3TSVXwSI.jpg', '/scene/BEPjKXLeeDY.jpg',
-        '/scene/BM0dBpznvJM.jpg', '/scene/CaSureNZ-BU.jpg', '/scene/I08afKfghZ0.jpg',
-        '/scene/IuvY7jdZuME.jpg', '/scene/JMEfSK0-sWc.jpg', '/scene/LQ7rQcP25ms.jpg',
-        '/scene/OdGFr-Ysz-U.jpg', '/scene/bocByPNm8Z4.jpg', '/scene/keiQ8fBq5gw.jpg',
-        '/scene/losMjTOFLRs.jpg', '/scene/ndGbT8qU_eo.jpg', '/scene/p0bGoSNatio.jpg',
-        '/scene/rJ8rfFUiJeA.jpg', '/scene/ygZi_HvrToQ.jpg',
+        asset('scene/00WzJlWaPeU.jpg'), asset('scene/9vZ3TSVXwSI.jpg'), asset('scene/BEPjKXLeeDY.jpg'),
+        asset('scene/BM0dBpznvJM.jpg'), asset('scene/CaSureNZ-BU.jpg'), asset('scene/I08afKfghZ0.jpg'),
+        asset('scene/IuvY7jdZuME.jpg'), asset('scene/JMEfSK0-sWc.jpg'), asset('scene/LQ7rQcP25ms.jpg'),
+        asset('scene/OdGFr-Ysz-U.jpg'), asset('scene/bocByPNm8Z4.jpg'), asset('scene/keiQ8fBq5gw.jpg'),
+        asset('scene/losMjTOFLRs.jpg'), asset('scene/ndGbT8qU_eo.jpg'), asset('scene/p0bGoSNatio.jpg'),
+        asset('scene/rJ8rfFUiJeA.jpg'), asset('scene/ygZi_HvrToQ.jpg'),
     ],
     actress: [
-        '/actress/IMG_20260110_191048_148.jpg', '/actress/IMG_20260523_184907_218.jpg',
-        '/actress/IMG_20260619_215900.jpg', '/actress/IMG_20261003_153110_992.jpg',
-        '/actress/IMG_20261010_172933_230.jpg', '/actress/IMG_20261017_154708_493.jpg',
+        asset('actress/IMG_20260110_191048_148.jpg'), asset('actress/IMG_20260523_184907_218.jpg'),
+        asset('actress/IMG_20260619_215900.jpg'), asset('actress/IMG_20261003_153110_992.jpg'),
+        asset('actress/IMG_20261010_172933_230.jpg'), asset('actress/IMG_20261017_154708_493.jpg'),
     ],
     foto: [
-        '/foto/DGawynGbB_8.jpg', '/foto/IMG_20260103_132610.jpg', '/foto/IMG_20260103_133405.jpg',
-        '/foto/IMG_20260103_134402.jpg', '/foto/IMG_20260614_172000.jpg', '/foto/IMG_20260614_172010.jpg',
-        '/foto/IMG_20260614_172216.jpg', '/foto/IMG_20260614_172220.jpg', '/foto/IMG_20260621_155131.jpg',
-        '/foto/IMG_20260621_155217.jpg', '/foto/YxOSzcylvlI.jpg',
+        asset('foto/DGawynGbB_8.jpg'), asset('foto/IMG_20260103_132610.jpg'), asset('foto/IMG_20260103_133405.jpg'),
+        asset('foto/IMG_20260103_134402.jpg'), asset('foto/IMG_20260614_172000.jpg'), asset('foto/IMG_20260614_172010.jpg'),
+        asset('foto/IMG_20260614_172216.jpg'), asset('foto/IMG_20260614_172220.jpg'), asset('foto/IMG_20260621_155131.jpg'),
+        asset('foto/IMG_20260621_155217.jpg'), asset('foto/YxOSzcylvlI.jpg'),
     ],
     diplom: [
-        '/diplom/IMG_20260328_174253.jpg', '/diplom/IMG_20260530_214132.jpg',
+        asset('diplom/IMG_20260328_174253.jpg'), asset('diplom/IMG_20260530_214132.jpg'),
     ],
 }
 

@@ -24,7 +24,7 @@ export default function Navbar({ items, menuOpen, onToggleMenu }: NavbarProps) {
                         {/* ⬇⬇⬇ ДОБАВЛЕН ПРОМЕЖУТОЧНЫЙ ДИВ ДЛЯ ДВИЖЕНИЯ ВВЕРХ-ВНИЗ ⬇⬇⬇ */}
                         <div className="logo-floating">
                             <img
-                                src="/images/dragon.svg"
+                                src={`${import.meta.env.BASE_URL}images/dragon.svg`}
                                 alt="Логотип Дракон"
                                 className="logo-img"
                             />

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './Hero.css'
 
-const HERO_IMAGE = '/main/SCR-20261104.jpeg'
+const HERO_IMAGE = `${import.meta.env.BASE_URL}main/SCR-20261104.jpeg`
 
 export default function Hero() {
     const [imageLoaded, setImageLoaded] = useState(false)

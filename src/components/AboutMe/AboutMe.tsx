@@ -39,7 +39,7 @@ export default function AboutMe() {
                     <div className="about-photo-wrapper">
                         <div className="about-photo-frame">
                             <img
-                                src="/about/IMG_20260103_133944_1.jpg"
+                                src={`${import.meta.env.BASE_URL}about/IMG_20260103_133944_1.jpg`}
                                 alt="Дарья Сиволобова — фото для портфолио"
                                 loading="lazy"
                                 className="about-photo"
